@@ -42,7 +42,7 @@ const institutes = reactive({
     id="disclaimer"
   >
     <p class="text-slate-600 max-sm:px-5 px-8 py-3 max-sm:py-2 font-semibold text-xs md:text-sm leading-5">
-      Disclaimer : Data yang ditampilkan hanya sebatas Capres/Cawapres, Bacaleg
+      ⚠ Disclaimer : Data yang ditampilkan hanya sebatas Capres/Cawapres, Bacaleg
       Provinsi Yogyakarta dan Bantul
     </p>
   </div>
@@ -66,8 +66,8 @@ const institutes = reactive({
           besar untuk membentuk masa depan yang kita inginkan. Say no to golput,
           let's make our voices count!
         </p>
-        <div class="cta mt-5 flex md:flex-row gap-4">
-          <button class="bg-red-700 text-white max-sm:text-xs max-sm:py-2 max-sm:px-5 md:py-4 md:px-10 rounded-full">
+        <div class="cta mt-5 flex max-sm:flex-col md:flex-row gap-4">
+          <button class="bg-red-700 hover:bg-red-800 hover:font-bold transition ease-in duration-150 text-white max-sm:text-xs max-sm:py-5 max-sm:px-5 md:py-4 md:px-10 rounded-full">
             PELAJARI HAK PILIHMU
           </button>
           <button
@@ -86,7 +86,7 @@ const institutes = reactive({
   <!-- Voting -->
   <section id="voter" class="mx-auto my-20 max-sm:mx-5">
     <div class="title text-center">
-      <p class="text-2xl font-medium text-purple-900 tracking-tight">
+      <p class="text-2xl font-medium text-slate-700 tracking-tight">
         Voting dulu yuk
         <span class="font-sansita text-red-600 font-bold">Paslon Pusat</span>
         Pilihanmu !
