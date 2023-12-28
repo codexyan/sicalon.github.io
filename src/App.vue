@@ -1,93 +1,46 @@
 <script setup>
-import { ref, onMounted, computed } from "vue";
 import { RouterLink, RouterView } from "vue-router";
-
-const isMenuOpen = ref(false);
-
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-  console.log("toggle aktif!");
-};
-
-const navImgClasses = computed(() => {
-  return {
-    "max-sm:order-first": isMenuOpen.value,
-  };
-});
-
-const mainNavClasses = computed(() => {
-  return {
-    "max-sm:relative": isMenuOpen.value,
-  };
-});
-
-const comainClasses = computed(() => {
-  return {
-    "max-sm:blur-sm": isMenuOpen.value,
-  };
-});
-
-const linkMenuClasses = computed(() => {
-  return {
-    "max-sm:bg-white": isMenuOpen.value,
-    "max-sm:absolute": isMenuOpen.value,
-    "max-sm:top-20": isMenuOpen.value,
-    "max-sm:flex": isMenuOpen.value,
-    "max-sm:flex-col": isMenuOpen.value,
-    "max-sm:gap-5": isMenuOpen.value,
-    "max-sm:w-full": isMenuOpen.value,
-    "max-sm:py-3": isMenuOpen.value,
-    "max-sm:px-5": isMenuOpen.value,
-    "max-sm:rounded-lg": isMenuOpen.value,
-    "max-sm:text-slate-700": isMenuOpen.value,
-    "max-sm:font-medium": isMenuOpen.value,
-    "max-sm:shadow": isMenuOpen.value,
-  };
-});
-
-onMounted(() => {
-  const toggle = document.getElementById("toggle-menu");
-  const navLinks = document.querySelectorAll(".navlink");
-
-  if (toggle) {
-    toggle.addEventListener("click", toggleMenu);
-    toggle.addEventListener("click", function () {
-      navLinks.forEach((navLink) => {
-        navLink.classList.toggle("max-sm:hidden");
-      });
-    });
-  } else {
-    console.error("Element dengan ID toggle-menu tidak ditemukan.");
-  }
-});
 </script>
 
 <template>
   <header>
     <div class="wrapper mx-auto font-poppins left-0 right-0 top-0 fixed z-50 bg-white shadow-sm">
-      <nav
-        class="flex flex-row gap-10 justify-center text-sm md:text-base py-3 items-center text-slate-400 max-sm:justify-between max-sm:mx-5"
-        id="mainNav" :class="mainNavClasses">
-        <div id="linkMenu" :class="linkMenuClasses">
-          <RouterLink to="/" class="max-sm:hidden navlink">Beranda</RouterLink>
-          <RouterLink to="/about" class="max-sm:hidden navlink">Tentang</RouterLink>
-          <RouterLink to="/program" class="max-sm:hidden navlink">Program</RouterLink>
-          <RouterLink to="/member" class="max-sm:hidden navlink">Anggota</RouterLink>
-        </div>
-        <RouterLink to="/" id="navImg" :class="navImgClasses">
-          <img src="/src/assets/img/logo.png" alt="logo.png" class="h-14" />
+
+
+    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <RouterLink to="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src="/src/assets/img/logo.png" class="h-10" alt="Flowbite Logo" />
         </RouterLink>
-        <span id="toggle-menu"
-          class="flex flex-col gap-1 bg-slate-100/95 cursor-pointer justify-center w-10 items-center h-10 rounded-lg shadow hover:bg-white sm:hidden">
-          <div class="border-2 rounded-full w-6 border-slate-500"></div>
-          <div class="border-2 rounded-full w-3 border-slate-500"></div>
-          <div class="border-2 rounded-full w-6 border-slate-500"></div>
-        </span>
-      </nav>
+        <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+          </svg>
+        </button>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+          <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li>
+              <RouterLink to="/" :class="{ 'bg-red-700': $route.path === '/' }" class="block py-2 px-3 text-gray-900 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Beranda</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/about" :class="{ 'bg-red-700': $route.path === '/about' }" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Tentang Kami</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/member" :class="{ 'bg-red-700': $route.path === '/member' }" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Anggota</RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/program" :class="{ 'bg-red-700': $route.path === '/program' }" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Program</RouterLink>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     </div>
   </header>
 
-  <main class="max-w-[1536px] mt-24 mx-auto -z-50" id="comain" :class="comainClasses">
+  <main class="max-w-[1536px] mt-24 mx-auto -z-50" id="comain">
     <RouterView />
   </main>
 
